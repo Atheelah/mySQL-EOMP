@@ -1,6 +1,7 @@
 # LOGIN PAGE
 
 from tkinter import *
+
 root = Tk()
 root.title("LOGIN PAGE")
 
@@ -11,7 +12,7 @@ root.geometry("350x350")
 root.resizable(height=False, width=False)
 
 # SETTING THE BACKGROUND COLOR
-# root.config(bg='grey')
+root.config(bg='white')
 
 # LABELS
 user_LBL = Label(root, text="Please Enter Username : ")
