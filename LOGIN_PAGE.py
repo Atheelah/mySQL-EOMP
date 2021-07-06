@@ -27,7 +27,7 @@ pass_Ent = Entry(root, font="calibri 14 bold", width=21)
 pass_Ent.place(x=80, y=120)
 
 # LOGIN BUTTON
-login_Btn = Button(root, text="Login", borderwidth="1", bg="#187bcd", fg="black", font="calibri 15 bold", width=18)
+login_Btn = Button(root, text="Login", borderwidth="1", bg="#187bcd", fg="black", font="calibri 15 bold", width=18, activebackground="white")
 login_Btn.place(x=80, y=180)
 
 # REGISTER BUTTON

@@ -1,7 +1,7 @@
 from tkinter import *
 
 root = Tk()
-root.title("LOGIN PAGE")
+root.title("REGISTER PAGE")
 
 # SETTING THE SIZE
 root.geometry("450x450")
