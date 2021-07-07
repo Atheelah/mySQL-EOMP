@@ -15,13 +15,13 @@ root.resizable(height=False, width=False)
 root.config(bg='white')
 
 # USERNAME
-user_LBL = Label(root, text="Username ", bg="white", font="calibri 15 bold")
+user_LBL = Label(root, text="Name ", bg="white", font="calibri 15 bold")
 user_LBL.place(x=80, y=5)
 user_Ent = Entry(root, font="calibri 14 bold", width=21)
 user_Ent.place(x=80, y=40)
 
 # PASSWORD
-pass_LBL = Label(root, text="Password ", bg="white", font="calibri 15 bold")
+pass_LBL = Label(root, text="ID Number ", bg="white", font="calibri 15 bold")
 pass_LBL.place(x=80, y=80)
 pass_Ent = Entry(root, font="calibri 14 bold", width=21)
 pass_Ent.place(x=80, y=120)
