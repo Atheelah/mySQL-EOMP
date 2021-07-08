@@ -2,7 +2,7 @@ from tkinter import *
 import mysql.connector
 from tkinter import ttk
 root = Tk()
-root.title("Welcome")
+root.title("Database Displayed")
 
 # SETTING THE SIZE
 root.geometry("1100x900")
@@ -22,6 +22,8 @@ conn = connect.cursor()
 conn.execute("SELECT * FROM User")
 tree = ttk.Treeview(root)
 
+heading_LBL = Label(root, text="Table Of User Details ", bg="white", font="calibri 20 bold")
+heading_LBL.place(x=400, y=10)
 tree["show"] = "headings"
 tree["columns"] = ("No", "Name", "Email", "Phone", "ID", "date_time_in", "date_time_out")
 
@@ -46,13 +48,15 @@ i = 0
 for ro in conn:
     tree.insert('', i, text="", values=(ro[0], ro[1], ro[2], ro[3], ro[4], ro[5], ro[6]))
     i = i + 1
-tree.pack()
+tree.place(x=20, y=80)
 
 connect = mysql.connector.connect(host="localhost", user="lifechoices", password="@Lifechoices1234", database="lifechoicesonline")
 conn = connect.cursor()
 conn.execute("SELECT * FROM nextofkin")
 tree = ttk.Treeview(root)
 
+nextheading_LBL = Label(root, text="Table Of Next Of Kin Details ", bg="white", font="calibri 20 bold")
+nextheading_LBL.place(x=350, y=340)
 tree["show"] = "headings"
 tree["columns"] = ("No", "Name", "Phone", "UserNo")
 
@@ -73,6 +77,6 @@ i = 0
 for ro in conn:
     tree.insert('', i, text="", values=(ro[0], ro[1], ro[2], ro[3]))
     i = i + 1
-tree.pack()
+tree.place(x=300, y=400)
 
 root.mainloop()
