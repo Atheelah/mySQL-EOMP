@@ -5,7 +5,7 @@ root = Tk()
 root.title("Database Displayed")
 
 # SETTING THE SIZE
-root.geometry("1100x900")
+root.geometry("1100x700")
 
 # THE USER CANT MAXIMIZE THE WINDOW
 root.resizable(height=False, width=False)
@@ -22,7 +22,7 @@ conn = connect.cursor()
 conn.execute("SELECT * FROM User")
 tree = ttk.Treeview(root)
 
-heading_LBL = Label(root, text="Table Of User Details ", bg="white", font="calibri 20 bold")
+heading_LBL = Label(root, text="Table Of User Details ", bg="white", font="Times 20 bold")
 heading_LBL.place(x=400, y=10)
 tree["show"] = "headings"
 tree["columns"] = ("No", "Name", "Email", "Phone", "ID", "date_time_in", "date_time_out")
@@ -55,17 +55,14 @@ conn = connect.cursor()
 conn.execute("SELECT * FROM nextofkin")
 tree = ttk.Treeview(root)
 
-nextheading_LBL = Label(root, text="Table Of Next Of Kin Details ", bg="white", font="calibri 20 bold")
-nextheading_LBL.place(x=350, y=340)
+nextHeading_LBL = Label(root, text="Table Of Next Of Kin Details ", bg="white", font="Times 20 bold")
+nextHeading_LBL.place(x=380, y=340)
 tree["show"] = "headings"
 tree["columns"] = ("No", "Name", "Phone", "UserNo")
-
 tree.column("No", width=100, minwidth=100, anchor=CENTER)
-tree.column("Name", width=150, minwidth=150, anchor=CENTER)
-tree.column("Phone", width=150, minwidth=150, anchor=CENTER)
+tree.column("Name", width=200, minwidth=200, anchor=CENTER)
+tree.column("Phone", width=200, minwidth=200, anchor=CENTER)
 tree.column("UserNo", width=150, minwidth=150, anchor=CENTER)
-
-
 
 tree.heading("No", text="No", anchor=CENTER)
 tree.heading("Name", text="Name", anchor=CENTER)
@@ -77,6 +74,6 @@ i = 0
 for ro in conn:
     tree.insert('', i, text="", values=(ro[0], ro[1], ro[2], ro[3]))
     i = i + 1
-tree.place(x=300, y=400)
+tree.place(x=250, y=400)
 
 root.mainloop()

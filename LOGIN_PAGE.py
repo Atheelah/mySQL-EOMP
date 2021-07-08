@@ -42,9 +42,30 @@ def sign_in():
         # current = int(i[0]) + 1
         if user_Ent.get() == i[1] and pass_Ent.get() == i[4]:
             verify = True
-            sqlstatement= "UPDATE User SET date_time_in = curtime() WHERE No= " + i[0]
-            conn.commit()
+            sqlstatement= "UPDATE User SET date_time_in = curtime() WHERE No= " + str(i[0])
+            conn.execute(sqlstatement)
+            connect.commit()
+            print(conn.rowcount)
             messagebox.showinfo(message="Successfully logged in")
+    if not verify:
+        messagebox.showerror(message="User not register")
+
+def sign_out():
+
+    connect = mysql.connector.connect(host="localhost", user="lifechoices", password="@Lifechoices1234",
+                                      database="lifechoicesonline")
+    conn = connect.cursor()
+    conn.execute("SELECT * FROM User")
+    verify = False
+    for i in conn:
+        # current = int(i[0]) + 1
+        if user_Ent.get() == i[1] and pass_Ent.get() == i[4]:
+            verify = True
+            sqlstatement= "UPDATE User SET date_time_out = curtime() WHERE No= " + str(i[0])
+            conn.execute(sqlstatement)
+            connect.commit()
+            print(conn.rowcount)
+            messagebox.showinfo(message="Successfully logged out")
     if not verify:
         messagebox.showerror(message="User not register")
 
@@ -56,7 +77,7 @@ user_signin_Btn = Button(root, text="Sign In", borderwidth="1", bg="#187bcd", fg
 user_signin_Btn.place(x=80, y=280)
 
 user_signout_Btn = Button(root, text="Sign Out", borderwidth="1", bg="#187bcd", fg="black", font="calibri 15 bold", width=7,
-                        activebackground="white")
+                        activebackground="white", command=sign_out)
 user_signout_Btn.place(x=230, y=280)
 # ADMIN HEADING
 admin_LBL = Label(root, text="Admin Sign In Here ", bg="white", font="Times 20 bold underline")
