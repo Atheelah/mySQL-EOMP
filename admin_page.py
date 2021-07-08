@@ -5,7 +5,7 @@ root = Tk()
 root.title("Welcome")
 
 # SETTING THE SIZE
-root.geometry("1040x300")
+root.geometry("1100x900")
 
 # THE USER CANT MAXIMIZE THE WINDOW
 root.resizable(height=False, width=False)
@@ -26,7 +26,7 @@ tree["show"] = "headings"
 tree["columns"] = ("No", "Name", "Email", "Phone", "ID", "date_time_in", "date_time_out")
 
 tree.column("No", width=100, minwidth=100, anchor=CENTER)
-tree.column("Name", width=150, minwidth=150, anchor=CENTER)
+tree.column("Name", width=200, minwidth=200, anchor=CENTER)
 tree.column("Email", width=150, minwidth=150, anchor=CENTER)
 tree.column("Phone", width=150, minwidth=150, anchor=CENTER)
 tree.column("ID", width=150, minwidth=150, anchor=CENTER)
@@ -47,4 +47,32 @@ for ro in conn:
     tree.insert('', i, text="", values=(ro[0], ro[1], ro[2], ro[3], ro[4], ro[5], ro[6]))
     i = i + 1
 tree.pack()
+
+connect = mysql.connector.connect(host="localhost", user="lifechoices", password="@Lifechoices1234", database="lifechoicesonline")
+conn = connect.cursor()
+conn.execute("SELECT * FROM nextofkin")
+tree = ttk.Treeview(root)
+
+tree["show"] = "headings"
+tree["columns"] = ("No", "Name", "Phone", "UserNo")
+
+tree.column("No", width=100, minwidth=100, anchor=CENTER)
+tree.column("Name", width=150, minwidth=150, anchor=CENTER)
+tree.column("Phone", width=150, minwidth=150, anchor=CENTER)
+tree.column("UserNo", width=150, minwidth=150, anchor=CENTER)
+
+
+
+tree.heading("No", text="No", anchor=CENTER)
+tree.heading("Name", text="Name", anchor=CENTER)
+tree.heading("Phone", text="Phone", anchor=CENTER)
+tree.heading("UserNo", text="UserNo", anchor=CENTER)
+
+
+i = 0
+for ro in conn:
+    tree.insert('', i, text="", values=(ro[0], ro[1], ro[2], ro[3]))
+    i = i + 1
+tree.pack()
+
 root.mainloop()

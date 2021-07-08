@@ -76,13 +76,13 @@ pass2_Ent.place(x=80, y=460)
 
 
 def admin_rights():
-    if user_Ent.get() != "lifechoices":
+    if user2_Ent.get() != "lifechoices":
         messagebox.showerror(message="Please enter correct Admin details")
-    elif pass_Ent.get() != "lifechoices1234":
+    elif pass2_Ent.get() != "lifechoices1234":
         messagebox.showerror(message="Please enter correct Admin password")
 
     else:
-        if user_Ent.get() == "lifechoices" and pass_Ent.get() == "lifechoices1234":
+        if user2_Ent.get() == "lifechoices" and pass2_Ent.get() == "lifechoices1234":
             messagebox.showinfo("Access Granted", "Welcome Admin")
             root.destroy()
             import admin_page
