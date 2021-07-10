@@ -46,10 +46,16 @@ tree.heading("ID", text="ID", anchor=CENTER)
 tree.heading("date_time_in", text="date_time_in", anchor=CENTER)
 tree.heading("date_time_out", text="date_time_out", anchor=CENTER)
 
+# COUNTING USERS LOGGED ON
+
+count_LBL = Label(root, text="", bg="white", font="Times 20 bold")
+count_LBL.place(x=700, y=10)
+
 i = 0
 for ro in conn:
     tree.insert('', i, text="", values=(ro[0], ro[1], ro[2], ro[3], ro[4], ro[5], ro[6]))
     i = i + 1
+count_LBL["text"] = str(i)+" Amount Of Users"
 tree.place(x=20, y=80)
 
 connect = mysql.connector.connect(host="localhost", user="lifechoices", password="@Lifechoices1234", database="lifechoicesonline")
@@ -130,8 +136,10 @@ def delete_user(tree):
     item_selected=tree.selection()[0]
     print(tree.item(item_selected)['values'])
     uid =tree.item(item_selected)['values'][0]
+    # del_Child="DElETE FROM nextofkin WHERE UserNo=%S"
     del_query="DELETE FROM User WHERE No=%s"
     sel_data =(uid,)
+    # conn.execute(del_Child,sel_data)
     conn.execute(del_query, sel_data)
     connect.commit()
     tree.delete(item_selected)

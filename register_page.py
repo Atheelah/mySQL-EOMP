@@ -1,5 +1,11 @@
 from tkinter import *
 import mysql.connector
+from playsound import playsound
+import requests
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 root = Tk()
 root.title("REGISTER PAGE")
 
@@ -39,6 +45,37 @@ def insert():
         # current = int(i[0]) + 1
         print(i)
     connect.commit()
+    playsound("Ding Sound Effect.mp3")
+    sender_email_id = "atheelahvanderschyff17@gmail.com"
+    receiver_email_id = "{}\n".format(email_Ent.get())
+    password = "Av1707004"
+    subject = "Life Choices Registration"
+    msg = MIMEMultipart()
+    msg['From'] = sender_email_id
+    msg['To'] = receiver_email_id
+    msg['Subject'] = subject
+    body = "Good Day, {}\n".format(name_Ent.get())
+    body += "\n"
+    body += "We hope this email finds you well. \n"
+    body += "\n"
+    body = body + "You have successfully registered as a user on Life Choices Online.\n"
+    body += "\n"
+    body = body + "Regards\n"
+    body = body + "Life Choices\n"
+    msg.attach(MIMEText(body, 'plain'))
+    text = msg.as_string()
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    # start TLS for security
+    s.starttls()
+    # Authentication
+    s.login(sender_email_id, password)
+    # message to be sent
+
+    # sending the mail
+    s.sendmail(sender_email_id, receiver_email_id, text)
+    # terminating the session
+    s.quit()
+
     root.destroy()
     import LOGIN_PAGE
 # insert()
